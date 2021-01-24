@@ -376,6 +376,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 281636950}
+  groundCheck: {fileID: 1089916722}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &576107656
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,7 +470,7 @@ GameObject:
   - component: {fileID: 680177839}
   - component: {fileID: 680177838}
   - component: {fileID: 680177837}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}

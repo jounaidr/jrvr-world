@@ -7,8 +7,10 @@ public class PlayerMovement : MonoBehaviour
     private const float SPEED = 12f;
     private const float GRAVITY = -9.81f;
     private const float GROUND_DISTANCE = 0.4f;
+    private const float JUMP_HEIGHT = 3;
 
     private Vector3 fallVelocity;
+    private bool isGrounded;
 
     public CharacterController characterController;
     public Transform groundCheck;
@@ -17,9 +19,16 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Physics.CheckSphere(groundCheck.position, GROUND_DISTANCE, groundMask) && fallVelocity.y < 0) // Check if player object is on terrain and still falling
+        isGrounded = Physics.CheckSphere(groundCheck.position, GROUND_DISTANCE, groundMask);
+
+        if (isGrounded && fallVelocity.y < 0) // Check if player object is on terrain and still falling
         {
             fallVelocity.y = -2f; // Reset fall velocity
+        }
+
+        if(isGrounded && Input.GetButtonDown("Jump"))
+        {
+            fallVelocity.y = Mathf.Sqrt(JUMP_HEIGHT * -2f * GRAVITY); // Jump player object by JUMP_HEIGHT
         }
 
         float playerX = Input.GetAxis("Horizontal"); // X direction movment input from WASD
